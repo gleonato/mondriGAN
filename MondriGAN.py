@@ -20,7 +20,7 @@ from keras.engine.network import Network      # Gambi
 
 # Parametros do model
 
-DATADIR = "/home/leonato/Projects/myGAN/Piet_Mondrian"
+DATADIR = "/Users/gustavoleonato/Projects/DeepFakeProject/DFCreation/mondriGAN/Piet_Mondrian"
 IMG_SIZE = 172 # 56
 EPOCHS = 400001
 BATCH_SIZE = 132
