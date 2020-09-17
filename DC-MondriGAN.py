@@ -92,7 +92,7 @@ def load_data():
         except Exception as e:
             print("Error loading images!")
             pass
-    return img_array
+    return training_data
 
 def train(BATCH_SIZE):
     # (X_train, y_train), (X_test, y_test) = mnist.load_data()
