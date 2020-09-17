@@ -75,7 +75,7 @@ def combine_images(generated_images):
     return image
 
 def load_data():
-    training_data = []
+    # training_data = []
     for img in os.listdir(DATADIR):
         try:
             # img_array = cv2.imread(os.path.join(DATADIR,img), cv2.IMREAD_GRAYSCALE)
@@ -96,7 +96,8 @@ def load_data():
 
 def train(BATCH_SIZE):
     # (X_train, y_train), (X_test, y_test) = mnist.load_data()
-    (X_train, y_train), (X_test, y_test) = load_data()
+    training_data = []
+    training_data = load_data()
     X_train = (X_train.astype(np.float32) - 127.5)/127.5
     X_train = X_train[:, :, :, None]
     X_test = X_test[:, :, :, None]
