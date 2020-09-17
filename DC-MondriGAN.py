@@ -73,9 +73,29 @@ def combine_images(generated_images):
             img[:, :, 0]
     return image
 
+def load_data():
+    training_data = []
+    for img in os.listdir(DATADIR):
+        try:
+            # img_array = cv2.imread(os.path.join(DATADIR,img), cv2.IMREAD_GRAYSCALE)
+            img_array = cv2.imread(os.path.join(DATADIR,img), cv2.IMREAD_UNCHANGED)
+            print(img,img_array.shape)
+            # cv2.imshow('image',img_array)
+            # cv2.waitKey(0)
+            # new_array = cv2.resize(img_array,(IMG_SIZE,IMG_SIZE))
+            # print(new_array.shape)
+            # cv2.imshow('resized image',new_array)
+            # cv2.waitKey(0)
+            training_data.append([img_array])
+            print(training_data.shape)
+        except Exception as e:
+            print("Error loading images!")
+            pass
+    return img_array
 
 def train(BATCH_SIZE):
-    (X_train, y_train), (X_test, y_test) = mnist.load_data()
+    # (X_train, y_train), (X_test, y_test) = mnist.load_data()
+    (X_train, y_train), (X_test, y_test) = load_data()
     X_train = (X_train.astype(np.float32) - 127.5)/127.5
     X_train = X_train[:, :, :, None]
     X_test = X_test[:, :, :, None]
@@ -156,6 +176,8 @@ def get_args():
 
 if __name__ == "__main__":
     args = get_args()
+    # source data instead of mnist
+    DATADIR = '/home/leonato/Projects/mondriGAN/Piet_Mondrian'
     if args.mode == "train":
         train(BATCH_SIZE=args.batch_size)
     elif args.mode == "generate":
