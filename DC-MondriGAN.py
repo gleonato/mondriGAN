@@ -13,7 +13,7 @@ from PIL import Image
 import argparse
 import math
 import os
-import opencv
+import cv2
 
 
 def generator_model():
