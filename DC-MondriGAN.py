@@ -97,7 +97,7 @@ def load_data():
 def train(BATCH_SIZE):
     # (X_train, y_train), (X_test, y_test) = mnist.load_data()
     training_data = load_data()
-    training_data = np.array(training_data)
+    training_data = np.array(training_data).reshape(-1,IMG_SIZE,IMG_SIZE)
     training_data = (training_data.astype(np.float32) - 127.5)/127.5
     training_data = training_data[:, :, :, None]
     # training_data = np.array(training_data).reshape(-1,IMG_SIZE,IMG_SIZE)
@@ -181,6 +181,7 @@ if __name__ == "__main__":
     args = get_args()
     # source data instead of mnist
     DATADIR = '/home/leonato/Projects/mondriGAN/Piet_Mondrian'
+    IMG_SIZE = 640
     training_data = []
     if args.mode == "train":
         train(BATCH_SIZE=args.batch_size)
