@@ -97,8 +97,8 @@ def load_data():
 def train(BATCH_SIZE):
     # (X_train, y_train), (X_test, y_test) = mnist.load_data()
     training_data = load_data()
-    training_data = (X_train.astype(np.float32) - 127.5)/127.5
-    training_data = X_train[:, :, :, None]
+    training_data = (training_data.astype(np.float32) - 127.5)/127.5
+    training_data = training_data[:, :, :, None]
     # X_test = X_test[:, :, :, None]
     # X_train = X_train.reshape((X_train.shape, 1) + X_train.shape[1:])
     d = discriminator_model()
