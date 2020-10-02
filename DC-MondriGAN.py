@@ -106,9 +106,9 @@ def train(BATCH_SIZE):
     print(training_data.shape)
     # training_data = np.expand_dims(training_data, axis=3)
 
-    # training_data = (training_data.astype(np.float32) - 127.5)/127.5
-    # training_data = training_data[:, :, :, None]
-    # training_data = np.array(training_data).reshape(-1,IMG_SIZE,IMG_SIZE)
+    training_data = (training_data.astype(np.float32) - 127.5)/127.5
+    training_data = training_data[:, :, :, None]
+    training_data = np.array(training_data).reshape(-1,IMG_SIZE,IMG_SIZE)
     # X_test = X_test[:, :, :, None]
     # X_train = X_train.reshape((X_train.shape, 1) + X_train.shape[1:])
     d = discriminator_model()
