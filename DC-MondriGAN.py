@@ -18,7 +18,8 @@ import cv2
 
 def generator_model():
     model = Sequential()
-    model.add(Dense(input_dim=100, output_dim=1024))
+    model.add(Dense(256,input_dim=100))
+    # model.add(Dense(input_dim=100, output_dim=1024))   # Old
     model.add(Activation('tanh'))
     model.add(Dense(128*7*7))
     model.add(BatchNormalization())
@@ -89,7 +90,7 @@ def load_data():
             # cv2.imshow('resized image',new_array)
             # cv2.waitKey(0)
             training_data.append([img_array])
-            print(training_data.shape)
+            # print(training_data.shape)
         except Exception as e:
             print("Error loading images!")
             pass
@@ -98,9 +99,15 @@ def load_data():
 def train(BATCH_SIZE):
     # (X_train, y_train), (X_test, y_test) = mnist.load_data()
     training_data = load_data()
-    training_data = np.array(training_data).reshape(-1,IMG_SIZE,IMG_SIZE)
-    training_data = (training_data.astype(np.float32) - 127.5)/127.5
-    training_data = training_data[:, :, :, None]
+    print('List: ', training_data[1])
+    training_data = np.array(training_data)
+    print('Numpy: ',training_data.shape)
+    training_data = training_data / 127.5 - 1.
+    print(training_data.shape)
+    # training_data = np.expand_dims(training_data, axis=3)
+
+    # training_data = (training_data.astype(np.float32) - 127.5)/127.5
+    # training_data = training_data[:, :, :, None]
     # training_data = np.array(training_data).reshape(-1,IMG_SIZE,IMG_SIZE)
     # X_test = X_test[:, :, :, None]
     # X_train = X_train.reshape((X_train.shape, 1) + X_train.shape[1:])
