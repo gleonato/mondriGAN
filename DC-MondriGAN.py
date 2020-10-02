@@ -104,7 +104,7 @@ def train(BATCH_SIZE):
     print('Numpy: ',training_data.shape)
     training_data = training_data / 127.5 - 1.
     print(training_data.shape)
-    # training_data = np.expand_dims(training_data, axis=3)
+    training_data = np.expand_dims(training_data, axis=3)
 
     training_data = (training_data.astype(np.float32) - 127.5)/127.5
     training_data = training_data[:, :, :, None]
