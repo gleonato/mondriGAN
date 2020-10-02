@@ -115,10 +115,10 @@ def train(BATCH_SIZE):
     d.compile(loss='binary_crossentropy', optimizer=d_optim)
     for epoch in range(100):
         print("Epoch is", epoch)
-        print("Number of batches", int(X_train.shape[0]/BATCH_SIZE))
-        for index in range(int(X_train.shape[0]/BATCH_SIZE)):
+        print("Number of batches", int(training_data.shape[0]/BATCH_SIZE))
+        for index in range(int(training_data.shape[0]/BATCH_SIZE)):
             noise = np.random.uniform(-1, 1, size=(BATCH_SIZE, 100))
-            image_batch = X_train[index*BATCH_SIZE:(index+1)*BATCH_SIZE]
+            image_batch = training_data[index*BATCH_SIZE:(index+1)*BATCH_SIZE]
             generated_images = g.predict(noise, verbose=0)
             if index % 20 == 0:
                 image = combine_images(generated_images)
